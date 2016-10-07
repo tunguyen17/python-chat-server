@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 """
     Python server
+
+    Support command-line argument:
+    -sys.argv[1] = [port number]
+    (the first argument after the program name will be the port number)
+
+    If no command-line argument is provided the program will use the default values
+    [port number] = '4213'
 """
 #import soket to use as point of connection
 import socket
