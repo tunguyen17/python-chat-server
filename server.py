@@ -49,13 +49,15 @@ class Server(object):
                 try:
                     self.server.bind((self.host, self.port))
                     break
+                #exception to handle, creating host using existed port
                 except socket.error, (e, mess):
                     print(mess)
-                    while 1:
-                        try:
-                            self.port = int(raw_input('Enter a different port. Or enter any letter to exit.'))
-                        except ValueError:
-                            break
+                    try:
+                        print 'Enter a different port number. Or enter any letter to exit.'
+                        self.port = int(raw_input('Port Number:'))
+                    except ValueError:
+                        sys.exit(1)
+                        print 'Program terminated'
             self.record(self.server, 'Server created')
             print 'Server created:'
             print self.host, ':', self.port
