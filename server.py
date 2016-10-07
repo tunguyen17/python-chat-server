@@ -20,7 +20,7 @@ class Server(object):
         self.host = ''
         #Unique port number for connection
         try:
-            self.port = int(sys.argv[1]) if len(sys.argv>1) else portInput
+            self.port = int(sys.argv[1]) if len(sys.argv) > 1 else portInput
         except ValueError:
             print 'Invalid command-line argument'
         #max number of client waiting to be processed
