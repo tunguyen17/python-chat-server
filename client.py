@@ -169,8 +169,10 @@ class Client(object):
             self.client.send(usr)
             data = self.client.recv(self.size)
             if data == '!#@useraccepted**':
-                data = '\33[92mUser accepted\33[0m'
-            print data
+                print = '\33[92mUser accepted\33[0m'
+            else:
+                print data
+
 
         #Starting thread for sending and recieving
         thRcv = Thread(target = self.client_recieve)
