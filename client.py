@@ -111,7 +111,6 @@ class Client(object):
             #server closing flag
             elif data == '!#@Server**quit*##':
                 print '\033[91m' + 'Server closed!' + '\033[0m'
-                print 'Socket killed.'
                 print 'Please press ENTER to close sending thread'
                 #terminate the sending + recieving thread
                 self.run = False
@@ -173,6 +172,11 @@ class Client(object):
         thSnd.start()
         thRcv.start()
 
+        #waiting for the sending and recieving thread to reach terminal condition
+        thSnd.join()
+        thRcv.join()
+
+        #close socket
         self.client.close()
         print 'Socket killed. Disconnected from server'
 
