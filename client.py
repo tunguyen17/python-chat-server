@@ -78,8 +78,7 @@ class Client(object):
                 #Tell the server that client is quiting
                 self.client.send(message)
                 #Close connection, kill the socket
-                print 'Socket killed. Disconnected from server'
-                self.client.close()
+
                 #terminate the sending loop
                 self.run = False
             #sending message
@@ -114,7 +113,6 @@ class Client(object):
                 print '\033[91m' + 'Server closed!' + '\033[0m'
                 print 'Socket killed.'
                 print 'Please press ENTER to close sending thread'
-                self.client.close()
                 #terminate the sending + recieving thread
                 self.run = False
             elif data:
@@ -174,6 +172,9 @@ class Client(object):
         thSnd = Thread(target = self.client_send)
         thSnd.start()
         thRcv.start()
+
+        self.client.close()
+        print 'Socket killed. Disconnected from server'
 
 #Main method
 def main():
