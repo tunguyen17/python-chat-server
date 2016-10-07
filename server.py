@@ -19,7 +19,10 @@ class Server(object):
         #The bind method will fill the in the address of the current machine
         self.host = ''
         #Unique port number for connection
-        self.port = portInput
+        try:
+            self.port = int(sys.argv[1]) if len(sys.argv>1) else portInput
+        except ValueError:
+            print 'Invalid command-line argument'
         #max number of client waiting to be processed
         self.backlog = 1
         #maximum size of the data recieved from client

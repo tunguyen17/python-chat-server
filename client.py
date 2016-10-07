@@ -163,6 +163,9 @@ class Client(object):
         while data!='!#@useraccepted**':
             print data
             usr = raw_input("Username: ")
+            while len(usr) < 1:
+                print 'Invalid username.'
+                usr = raw_input("Username: ")
             self.client.send(usr)
             data = self.client.recv(self.size)
 
