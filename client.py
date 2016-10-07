@@ -154,11 +154,12 @@ class Client(object):
             print('\33[91m ' + 'Unable to connect to server' + '\33[0m')
 
     def start(self):
-        #Sending username to server
-        usr = raw_input("Username: ")
-        self.client.send(usr)
+
+        #testing connection
+        self.client.send('HOST')
         data = self.client.recv(self.size)
 
+        #Sending username to server
         #checking if username is valid
         while data!='!#@useraccepted**':
             print data
