@@ -50,7 +50,7 @@ class Client(object):
                         pFlag = False
                     #exception to catch the case when user does not input anything after flag and input a non number as port
                     except (IndexError, ValueError):
-                        print '\033[91mInvalid port name\033[0m'
+                        print '\033[91mInvalid port number\033[0m'
                         sys.exit(0)
                     break
         print 'Server address: ', self.host, ':', self.port
