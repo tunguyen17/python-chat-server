@@ -22,7 +22,8 @@ class Server(object):
         try:
             self.port = int(sys.argv[1]) if len(sys.argv) > 1 else portInput
         except ValueError:
-            print 'Invalid command-line argument'
+            print '\33[91mInvalid command-line argument\33[0m'
+            sys.exit(1)
         #max number of client waiting to be processed
         self.backlog = 1
         #maximum size of the data recieved from client
@@ -54,10 +55,10 @@ class Server(object):
                     print(mess)
                     try:
                         print 'Enter a different port number. Or enter any letter to exit.'
-                        self.port = int(raw_input('Port Number:'))
+                        self.port = int(raw_input('Port Number: '))
                     except ValueError:
+                        print '\33[94mProgram terminated\33[0m'
                         sys.exit(1)
-                        print 'Program terminated'
             self.record(self.server, 'Server created')
             print 'Server created:'
             print self.host, ':', self.port
