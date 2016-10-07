@@ -168,7 +168,7 @@ class Client(object):
                 usr = raw_input("Username: ")
             self.client.send(usr)
             data = self.client.recv(self.size)
-            if data!= '!#@useraccepted**':
+            if data == '!#@useraccepted**':
                 data = '\33[92mUser accepted\33[0m'
             print data
 
