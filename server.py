@@ -53,10 +53,9 @@ class Server(object):
                     print(mess)
                     while 1:
                         try:
-                            self.port = int(raw_input('Enter a different port: '))
-                            break
+                            self.port = int(raw_input('Enter a different port. Or enter any letter to exit.'))
                         except ValueError:
-                            print 'Please enter an int'
+                            break
             self.record(self.server, 'Server created')
             print 'Server created:'
             print self.host, ':', self.port
