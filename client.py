@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 """
     Python client
+
+    Support command-line argument:
+    -h [host name]
+    -p [port number]
+
+    If no command-line argument is provided the program will use the default values
+    [host name] = 'localhost'
+    [port number] = '4213'
 """
 
 #import socket for creating point of connection
@@ -16,12 +24,36 @@ class Client(object):
         #host name of server
         self.host = 'localhost'
         #server port
+        self.port = inputPort
+
         #If there is an inline-command the first argument is the port
-        try:
-            self.port = inputPort if len(sys.argv)<2 else int(sys.argv[1])
-        except ValueError:
-            print '\033[91mInvalid input for port number.\033[0m'
-            sys.exit(0) #quit the program immediately
+        self.cmdln = sys.argv
+        if 1<len(self.cmdln)<6:
+            hFlag = True
+            pFlag = True
+
+            for i in range(len(self.cmdln)):
+                #find the host flag
+                if self.cmdln[i] == '-h' and hFlag:
+                    try:
+                        self.host = self.cmdln[i+1]
+                        hFlag = False
+                    #exception to catch the case when user does not input anything after flag
+                    except IndexError:
+                        print '\033[91mInvalid host name\033[0m'
+                        sys.exit(0)
+                #find the port flag
+                if self.cmdln[i] == '-p' and pFlag:
+                    try:
+                        print 'hi'
+                        self.port = int(self.cmdln[i+1])
+                        pFlag = False
+                    #exception to catch the case when user does not input anything after flag and input a non number as port
+                    except (IndexError, ValueError):
+                        print '\033[91mInvalid port name\033[0m'
+                        sys.exit(0)
+                    break
+        print 'Server address: ', self.host, ':', self.port
 
         #maximum size of data sent
         self.size = 1024
